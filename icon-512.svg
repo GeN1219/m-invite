@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#faf8f4"/>
+  <circle cx="256" cy="256" r="192" fill="none" stroke="#b08d57" stroke-width="5"/>
+  <circle cx="256" cy="256" r="176" fill="none" stroke="#d9c6a6" stroke-width="2.5"/>
+  <text x="256" y="298" font-family="Georgia, 'Times New Roman', serif" font-size="138" text-anchor="middle" fill="#35302b">G<tspan fill="#b08d57" font-style="italic">&amp;</tspan>A</text>
+  <text x="256" y="372" font-family="Georgia, serif" font-size="30" letter-spacing="8" text-anchor="middle" fill="#857b70">2017.11.15</text>
+</svg>

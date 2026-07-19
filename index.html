@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation — Gen &amp; Ayano</title>
+    <meta name="description" content="玄と彩乃の結婚式のご案内">
+    <meta name="theme-color" content="#faf8f4">
+    <link rel="icon" href="icon-192.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="icon-192.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        /* ---- 招待サイト専用スタイル ---- */
+
+        /* 暗い写真の上のヘッダーは白文字（スクロールで通常に戻る） */
+        .site-header:not(.is-solid) .brand,
+        .site-header:not(.is-solid) .nav-links a {
+            color: rgba(255, 255, 255, 0.92);
+        }
+
+        .site-header:not(.is-solid) .nav-links a::after {
+            background: #fff;
+        }
+
+        .site-header:not(.is-solid) .nav-toggle span {
+            background: #fff;
+        }
+
+        /* ヒーロー（TODO: 前撮りの写真が用意でき次第 pic/hero.jpg を差し替え） */
+        .invite-hero {
+            position: relative;
+            min-height: 100svh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 24px 90px;
+            overflow: hidden;
+            color: #fff;
+        }
+
+        .invite-hero .bg {
+            position: absolute;
+            inset: 0;
+            background: url('pic/hero.jpg') center 32% / cover no-repeat;
+        }
+
+        .invite-hero .bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(rgba(20, 16, 12, 0.45), rgba(20, 16, 12, 0.25) 45%, rgba(20, 16, 12, 0.55));
+        }
+
+        .invite-hero > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .invite-hero .eyebrow { color: rgba(255, 255, 255, 0.85); }
+        .invite-hero .divider { background: rgba(255, 255, 255, 0.8); }
+        .invite-hero .divider::after { background: #fff; }
+
+        .invite-names {
+            font-family: var(--font-latin);
+            font-size: clamp(44px, 9vw, 96px);
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            line-height: 1.2;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .invite-names .amp {
+            font-style: italic;
+            color: var(--accent-soft);
+        }
+
+        .invite-names-jp {
+            margin-top: 14px;
+            font-size: clamp(15px, 2.4vw, 20px);
+            letter-spacing: 0.5em;
+            text-indent: 0.5em;
+            color: rgba(255, 255, 255, 0.92);
+        }
+
+        .invite-date-line {
+            margin-top: 36px;
+            font-family: var(--font-latin);
+            font-size: clamp(14px, 2.2vw, 18px);
+            letter-spacing: 0.34em;
+            text-indent: 0.34em;
+            color: var(--accent-soft);
+        }
+
+        /* 本文セクション共通 */
+        .invite-section {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 80px 24px 10px;
+            text-align: center;
+            scroll-margin-top: var(--header-h);
+        }
+
+        .invite-section h2 {
+            font-size: clamp(20px, 3.2vw, 25px);
+            font-weight: 600;
+            letter-spacing: 0.26em;
+            text-indent: 0.26em;
+        }
+
+        .greeting-body {
+            margin-top: 34px;
+            font-size: 15px;
+            line-height: 2.6;
+            letter-spacing: 0.1em;
+            color: var(--ink-soft);
+        }
+
+        /* カウントダウン */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: clamp(14px, 4vw, 34px);
+            margin-top: 36px;
+        }
+
+        .cd-cell {
+            min-width: 76px;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            box-shadow: var(--shadow-sm);
+            padding: 18px 10px 14px;
+        }
+
+        .cd-cell .num {
+            font-family: var(--font-latin);
+            font-size: clamp(28px, 5vw, 40px);
+            font-weight: 500;
+            line-height: 1;
+            color: var(--accent);
+        }
+
+        .cd-cell .unit {
+            display: block;
+            margin-top: 8px;
+            font-family: var(--font-latin);
+            font-size: 10.5px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--ink-faint);
+        }
+
+        .countdown-note {
+            margin-top: 22px;
+            font-size: 13.5px;
+            letter-spacing: 0.12em;
+            color: var(--ink-faint);
+        }
+
+        /* 開催情報 */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-top: 40px;
+        }
+
+        .info-card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
+            padding: 34px 24px;
+        }
+
+        .info-card .info-label {
+            font-family: var(--font-latin);
+            font-size: 12px;
+            letter-spacing: 0.34em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .info-card .info-main {
+            margin-top: 16px;
+            font-size: 17px;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            line-height: 1.9;
+        }
+
+        .info-card .info-sub {
+            margin-top: 8px;
+            font-size: 13px;
+            letter-spacing: 0.08em;
+            color: var(--ink-soft);
+            line-height: 2;
+        }
+
+        .map-link {
+            display: inline-block;
+            margin-top: 26px;
+            font-family: var(--font-latin);
+            font-size: 12px;
+            letter-spacing: 0.24em;
+            color: var(--accent);
+            border-bottom: 1px solid var(--accent-soft);
+            padding-bottom: 2px;
+            transition: color 0.25s ease, border-color 0.25s ease;
+        }
+
+        .map-link:hover {
+            color: var(--ink);
+            border-color: var(--ink);
+        }
+
+        @media (max-width: 620px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ギャラリー（TODO: 前撮りの写真に差し替え予定） */
+        .invite-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 40px;
+        }
+
+        .invite-gallery figure {
+            margin: 0;
+            aspect-ratio: 4 / 5;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: var(--shadow-sm);
+            cursor: zoom-in;
+            background: var(--bg-alt);
+        }
+
+        .invite-gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .invite-gallery figure:hover img {
+            transform: scale(1.05);
+        }
+
+        .invite-gallery figure:nth-child(2) {
+            transform: translateY(22px);
+        }
+
+        @media (max-width: 620px) {
+            .invite-gallery {
+                gap: 8px;
+            }
+
+            .invite-gallery figure:nth-child(2) {
+                transform: translateY(12px);
+            }
+        }
+
+        /* ===== 出欠フォーム ===== */
+        .rsvp-form-card {
+            margin-top: 40px;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            box-shadow: var(--shadow-md);
+            padding: clamp(30px, 5.5vw, 52px);
+            position: relative;
+            text-align: left;
+            font-family: var(--font-sans);
+        }
+
+        .rsvp-form-card::before {
+            content: '';
+            position: absolute;
+            inset: 10px;
+            border: 1px solid var(--accent-faint);
+            border-radius: 12px;
+            pointer-events: none;
+        }
+
+        .rsvp-lead {
+            text-align: center;
+            font-family: var(--font-serif);
+            font-size: 14.5px;
+            line-height: 2.3;
+            letter-spacing: 0.08em;
+            color: var(--ink-soft);
+            margin-bottom: 30px;
+        }
+
+        .form-field {
+            margin-bottom: 22px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-field > label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            color: var(--ink);
+            margin-bottom: 8px;
+        }
+
+        .req {
+            display: inline-block;
+            font-size: 10px;
+            letter-spacing: 0.08em;
+            color: #fff;
+            background: var(--rose);
+            border-radius: 4px;
+            padding: 2px 7px;
+            margin-left: 8px;
+            vertical-align: 1px;
+        }
+
+        .opt {
+            display: inline-block;
+            font-size: 10px;
+            letter-spacing: 0.08em;
+            color: var(--ink-faint);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            padding: 1px 7px;
+            margin-left: 8px;
+            vertical-align: 1px;
+        }
+
+        /* 出欠の選択 */
+        .attend-choice {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .attend-choice input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .attend-choice label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 18px 10px;
+            border: 1.5px solid var(--line);
+            border-radius: 14px;
+            background: var(--bg);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-align: center;
+        }
+
+        .attend-choice label .big {
+            font-family: var(--font-serif);
+            font-size: 19px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-indent: 0.2em;
+        }
+
+        .attend-choice label .small-en {
+            font-family: var(--font-latin);
+            font-size: 10.5px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--ink-faint);
+        }
+
+        .attend-choice input:checked + label {
+            border-color: var(--accent);
+            background: var(--accent-faint);
+        }
+
+        .attend-choice input:checked + label .big {
+            color: var(--accent);
+        }
+
+        .attend-choice input:focus-visible + label {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* 新郎側/新婦側 */
+        .side-choice {
+            display: flex;
+            gap: 12px;
+        }
+
+        .side-choice input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .side-choice label {
+            flex: 1;
+            text-align: center;
+            padding: 11px 10px;
+            border: 1.5px solid var(--line);
+            border-radius: 10px;
+            background: var(--bg);
+            font-size: 13.5px;
+            letter-spacing: 0.08em;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .side-choice input:checked + label {
+            border-color: var(--accent);
+            background: var(--accent-faint);
+            color: var(--ink);
+        }
+
+        textarea.field {
+            resize: vertical;
+            min-height: 90px;
+            line-height: 1.9;
+        }
+
+        .rsvp-submit {
+            display: block;
+            width: 100%;
+            margin-top: 30px;
+            padding: 16px;
+            border: none;
+            border-radius: 999px;
+            background: var(--ink);
+            color: #fff;
+            font-family: var(--font-sans);
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 0.22em;
+            text-indent: 0.22em;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.25s ease, box-shadow 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .rsvp-submit:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .rsvp-submit:disabled {
+            background: var(--bg-alt);
+            color: var(--ink-faint);
+            cursor: default;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .form-note {
+            margin-top: 18px;
+            text-align: center;
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            color: var(--ink-faint);
+            line-height: 2;
+        }
+
+        .form-status {
+            margin-top: 18px;
+            text-align: center;
+            font-size: 13.5px;
+            letter-spacing: 0.08em;
+            line-height: 2;
+            display: none;
+        }
+
+        .form-status.ok { display: block; color: #6a8d60; }
+        .form-status.ng { display: block; color: var(--rose); }
+
+        /* 送信完了表示 */
+        .rsvp-done {
+            display: none;
+            text-align: center;
+            padding: 30px 10px;
+        }
+
+        .rsvp-done .en {
+            font-family: var(--font-latin);
+            font-style: italic;
+            font-size: 26px;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+        }
+
+        .rsvp-done .jp {
+            margin-top: 18px;
+            font-family: var(--font-serif);
+            font-size: 14.5px;
+            line-height: 2.4;
+            letter-spacing: 0.1em;
+            color: var(--ink-soft);
+        }
+
+        .invite-close {
+            padding: 90px 24px 100px;
+            text-align: center;
+        }
+
+        .invite-close .en {
+            font-family: var(--font-latin);
+            font-style: italic;
+            font-size: clamp(20px, 3.6vw, 28px);
+            color: var(--accent);
+            letter-spacing: 0.12em;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <a class="brand" href="#">G<span class="amp">&amp;</span>A</a>
+        <nav class="nav-links">
+            <a href="#greeting">ご挨拶</a>
+            <a href="#info">ご案内</a>
+            <a href="#gallery">ふたりのこと</a>
+            <a href="#rsvp">ご出欠</a>
+        </nav>
+        <button class="nav-toggle" aria-label="メニュー">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <div class="nav-drawer">
+        <a href="#greeting">ご挨拶<small>GREETING</small></a>
+        <a href="#info">ご案内<small>INFORMATION</small></a>
+        <a href="#gallery">ふたりのこと<small>US</small></a>
+        <a href="#rsvp">ご出欠<small>R.S.V.P.</small></a>
+    </div>
+
+    <!-- ヒーロー（TODO: 前撮り写真に差し替え予定） -->
+    <section class="invite-hero">
+        <div class="bg"></div>
+        <p class="eyebrow">Wedding Invitation</p>
+        <div class="divider"></div>
+        <h1 class="invite-names">Gen <span class="amp">&amp;</span> Ayano</h1>
+        <p class="invite-names-jp">玄・彩乃</p>
+        <p class="invite-date-line">2026.11.15 SUN</p>
+        <div class="scroll-cue">SCROLL</div>
+    </section>
+
+    <!-- ご挨拶 -->
+    <section class="invite-section reveal" id="greeting">
+        <p class="eyebrow">Greeting</p>
+        <div class="divider"></div>
+        <h2>ご挨拶</h2>
+        <p class="greeting-body">
+            謹啓<br>
+            皆様におかれましては<br>
+            ますますご清祥のこととお慶び申し上げます<br>
+            このたび 私たちは<br>
+            結婚式を挙げる運びとなりました<br>
+            日頃お世話になっております皆様への<br>
+            感謝の気持ちを込めて<br>
+            ささやかな披露の宴を催したく存じます<br>
+            ご多用中 誠に恐縮ではございますが<br>
+            ぜひご出席いただきたく ご案内申し上げます<br>
+            謹白
+        </p>
+    </section>
+
+    <!-- カウントダウン -->
+    <section class="invite-section reveal">
+        <p class="eyebrow">Countdown</p>
+        <div class="divider"></div>
+        <h2>挙式まで</h2>
+        <div class="countdown" id="countdown">
+            <div class="cd-cell"><p class="num" id="cdDays">-</p><span class="unit">Days</span></div>
+            <div class="cd-cell"><p class="num" id="cdHours">-</p><span class="unit">Hours</span></div>
+            <div class="cd-cell"><p class="num" id="cdMins">-</p><span class="unit">Minutes</span></div>
+        </div>
+        <p class="countdown-note">2026.11.15 SUN に皆様とお会いできますように</p>
+    </section>
+
+    <!-- 開催情報 -->
+    <section class="invite-section reveal" id="info">
+        <p class="eyebrow">Information</p>
+        <div class="divider"></div>
+        <h2>ご案内</h2>
+        <div class="info-grid">
+            <div class="info-card">
+                <p class="info-label">Ceremony</p>
+                <p class="info-main">挙式　10:30</p>
+                <p class="info-sub">2026.11.15 SUN<br>アニヴェルセル 白壁<br>〒461-0027 愛知県名古屋市東区芳野1-13-19</p>
+            </div>
+            <div class="info-card">
+                <p class="info-label">Reception</p>
+                <p class="info-main">披露宴　12:00（予定）</p>
+                <p class="info-sub">2026.11.15 SUN<br>アニヴェルセル 白壁<br>〒461-0027 愛知県名古屋市東区芳野1-13-19</p>
+            </div>
+        </div>
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E3%82%A2%E3%83%8B%E3%83%B4%E3%82%A7%E3%83%AB%E3%82%BB%E3%83%AB%E7%99%BD%E5%A3%81" target="_blank" rel="noopener">アクセスマップ ↗</a>
+    </section>
+
+    <!-- ギャラリー（TODO: 前撮り写真に差し替え予定） -->
+    <section class="invite-section reveal" id="gallery">
+        <p class="eyebrow">Us</p>
+        <div class="divider"></div>
+        <h2>ふたりのこと</h2>
+        <div class="invite-gallery photo-grid" style="display:grid">
+            <figure><img src="pic/us1.jpg" alt="ふたりの写真1" loading="lazy" style="object-position:50% 100%"></figure>
+            <figure><img src="pic/us2.jpg" alt="ふたりの写真2" loading="lazy" style="object-position:100% 50%"></figure>
+            <figure><img src="pic/us3.jpg" alt="ふたりの写真3" loading="lazy" style="object-position:50% 100%"></figure>
+        </div>
+        <p class="countdown-note">2017.11.15 に出会ってから、いつもふたりで歩いてきました</p>
+    </section>
+
+    <!-- 出欠フォーム -->
+    <section class="invite-section reveal" id="rsvp">
+        <p class="eyebrow">R.S.V.P.</p>
+        <div class="divider"></div>
+        <h2>ご出欠</h2>
+        <div class="rsvp-form-card">
+            <p class="rsvp-lead">
+                お手数ではございますが<br>
+                <strong id="deadlineText">2026年9月30日</strong> までに<br>
+                ご出欠をお知らせください
+            </p>
+
+            <form id="rsvpForm">
+                <div class="form-field">
+                    <label>ご出欠<span class="req">必須</span></label>
+                    <div class="attend-choice">
+                        <input type="radio" name="attendance" id="attendYes" value="出席" required>
+                        <label for="attendYes"><span class="big">ご出席</span><span class="small-en">Joyfully Accept</span></label>
+                        <input type="radio" name="attendance" id="attendNo" value="欠席">
+                        <label for="attendNo"><span class="big">ご欠席</span><span class="small-en">Regretfully Decline</span></label>
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label>ゲスト区分<span class="req">必須</span></label>
+                    <div class="side-choice">
+                        <input type="radio" name="side" id="sideGroom" value="新郎側" required>
+                        <label for="sideGroom">新郎側（玄）</label>
+                        <input type="radio" name="side" id="sideBride" value="新婦側">
+                        <label for="sideBride">新婦側（彩乃）</label>
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label for="nameInput">お名前<span class="req">必須</span></label>
+                    <input class="field" type="text" id="nameInput" placeholder="例）坂井田 太郎" autocomplete="name" required>
+                </div>
+
+                <div class="form-field">
+                    <label for="kanaInput">ふりがな<span class="opt">任意</span></label>
+                    <input class="field" type="text" id="kanaInput" placeholder="例）さかいだ たろう">
+                </div>
+
+                <div class="form-field">
+                    <label for="contactInput">ご連絡先（メールまたは電話番号）<span class="opt">任意</span></label>
+                    <input class="field" type="text" id="contactInput" placeholder="例）example@mail.com" autocomplete="email">
+                </div>
+
+                <div class="form-field">
+                    <label for="allergyInput">食物アレルギー・苦手な食材<span class="opt">任意</span></label>
+                    <textarea class="field" id="allergyInput" placeholder="例）えび・かに アレルギーがあります"></textarea>
+                </div>
+
+                <div class="form-field">
+                    <label for="messageInput">メッセージ<span class="opt">任意</span></label>
+                    <textarea class="field" id="messageInput" placeholder="ふたりへのメッセージがあればぜひ！"></textarea>
+                </div>
+
+                <button type="submit" class="rsvp-submit" id="submitBtn">送信する</button>
+                <p class="form-status" id="formStatus"></p>
+                <p class="form-note">ご入力いただいた内容は、結婚式の運営のためだけに使用します</p>
+            </form>
+
+            <div class="rsvp-done" id="rsvpDone">
+                <p class="en">Thank you!</p>
+                <p class="jp">
+                    ご返信ありがとうございました<br>
+                    当日 お会いできることを楽しみにしております
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="invite-close reveal">
+        <p class="en">We look forward to celebrating with you.</p>
+    </div>
+
+    <footer class="site-footer">
+        <p class="brand">G<span class="amp">&amp;</span>A</p>
+        <p class="footer-since">2026.11.15 — ANNIVERSAIRE SHIRAKABE</p>
+    </footer>
+
+    <script src="assets/js/site.js"></script>
+    <!-- Supabase JS クライアント（CDN） -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // =====================================================
+        // 設定
+        // =====================================================
+        const RSVP_DEADLINE_TEXT = '2026年9月30日';   // 返信締切の表示
+        const WEDDING_DATE_ISO = '2026-11-15T10:30:00+09:00';
+
+        // Supabase 接続情報
+        // ※ anon key は「公開してよい」設計のキーです。
+        //   wedding_rsvp テーブルは RLS で INSERT のみ許可しているため、
+        //   このキーでは送信はできても、他の方の回答を見ることはできません。
+        const SUPABASE_URL = 'https://iepaknxkkxqswtukhhkf.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImllcGFrbnhra3hxc3d0dWtoaGtmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA3Njg4NjIsImV4cCI6MjA4NjM0NDg2Mn0.1xeKkylb6kEVos-33wIaje6Mz5lqpQMdAOeUpa0DGRM';
+
+        document.getElementById('deadlineText').textContent = RSVP_DEADLINE_TEXT;
+
+        // ---- カウントダウン ----
+        (() => {
+            const target = new Date(WEDDING_DATE_ISO).getTime();
+            const tick = () => {
+                const diff = Math.max(0, target - Date.now());
+                document.getElementById('cdDays').textContent = Math.floor(diff / 86400000);
+                document.getElementById('cdHours').textContent = Math.floor(diff / 3600000) % 24;
+                document.getElementById('cdMins').textContent = Math.floor(diff / 60000) % 60;
+            };
+            tick();
+            setInterval(tick, 30000);
+        })();
+
+        // ---- 出欠フォーム送信 ----
+        (() => {
+            const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            const form = document.getElementById('rsvpForm');
+            const btn = document.getElementById('submitBtn');
+            const status = document.getElementById('formStatus');
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                status.className = 'form-status';
+                btn.disabled = true;
+                btn.textContent = '送信中…';
+
+                const payload = {
+                    attendance: form.querySelector('input[name="attendance"]:checked').value,
+                    guest_side: form.querySelector('input[name="side"]:checked').value,
+                    name: document.getElementById('nameInput').value.trim(),
+                    kana: document.getElementById('kanaInput').value.trim() || null,
+                    contact: document.getElementById('contactInput').value.trim() || null,
+                    allergy: document.getElementById('allergyInput').value.trim() || null,
+                    message: document.getElementById('messageInput').value.trim() || null,
+                };
+
+                const { error } = await supabaseClient.from('wedding_rsvp').insert([payload]);
+
+                if (error) {
+                    console.error('送信エラー:', error);
+                    status.textContent = '送信に失敗しました。お手数ですが、時間をおいて再度お試しいただくか、新郎新婦まで直接ご連絡ください。';
+                    status.classList.add('ng');
+                    btn.disabled = false;
+                    btn.textContent = '送信する';
+                    return;
+                }
+
+                form.style.display = 'none';
+                document.querySelector('.rsvp-lead').style.display = 'none';
+                document.getElementById('rsvpDone').style.display = 'block';
+            });
+        })();
+    </script>
+</body>
+</html>
