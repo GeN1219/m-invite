@@ -867,8 +867,6 @@
     </footer>
 
     <script src="assets/js/site.js"></script>
-    <!-- Supabase JS クライアント（CDN） -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         // =====================================================
         // 設定
@@ -876,12 +874,9 @@
         const RSVP_DEADLINE_TEXT = '2026年9月30日';   // 返信締切の表示
         const WEDDING_DATE_ISO = '2026-11-15T10:30:00+09:00';
 
-        // Supabase 接続情報
-        // ※ anon key は「公開してよい」設計のキーです。
-        //   wedding_rsvp テーブルは RLS で INSERT のみ許可しているため、
-        //   このキーでは送信はできても、他の方の回答を見ることはできません。
-        const SUPABASE_URL = 'https://iepaknxkkxqswtukhhkf.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImllcGFrbnhra3hxc3d0dWtoaGtmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA3Njg4NjIsImV4cCI6MjA4NjM0NDg2Mn0.1xeKkylb6kEVos-33wIaje6Mz5lqpQMdAOeUpa0DGRM';
+        // 出欠フォームの送信先（Google Apps Script のウェブアプリURL）
+        // 送信内容は「スプレッドシート記録 / メール通知 / LINE通知」に自動で振り分けられます
+        const RSVP_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxuQsgHhZE1ktcGJplChvAbOVxGTgYIVIX27N5PhT3ndk3btJMpq7D4mku-kW2Boh6_/exec';
 
         document.getElementById('deadlineText').textContent = RSVP_DEADLINE_TEXT;
 
@@ -976,7 +971,6 @@
 
         // ---- 出欠フォーム送信 ----
         (() => {
-            const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
             const form = document.getElementById('rsvpForm');
             const btn = document.getElementById('submitBtn');
             const status = document.getElementById('formStatus');
@@ -991,17 +985,22 @@
                     attendance: form.querySelector('input[name="attendance"]:checked').value,
                     guest_side: form.querySelector('input[name="side"]:checked').value,
                     name: document.getElementById('nameInput').value.trim(),
-                    kana: document.getElementById('kanaInput').value.trim() || null,
-                    contact: document.getElementById('contactInput').value.trim() || null,
-                    allergy: document.getElementById('allergyInput').value.trim() || null,
-                    message: document.getElementById('messageInput').value.trim() || null,
+                    kana: document.getElementById('kanaInput').value.trim(),
+                    contact: document.getElementById('contactInput').value.trim(),
+                    allergy: document.getElementById('allergyInput').value.trim(),
+                    message: document.getElementById('messageInput').value.trim(),
                 };
 
-                const { error } = await supabaseClient.from('wedding_rsvp').insert([payload]);
-
-                if (error) {
-                    console.error('送信エラー:', error);
-                    status.textContent = '送信に失敗しました。お手数ですが、時間をおいて再度お試しいただくか、新郎新婦まで直接ご連絡ください。';
+                try {
+                    // GASウェブアプリはCORSレスポンスを返さないため no-cors で送信（結果は読まない）
+                    await fetch(RSVP_ENDPOINT, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        body: JSON.stringify(payload),
+                    });
+                } catch (err) {
+                    console.error('送信エラー:', err);
+                    status.textContent = '送信に失敗しました。通信環境をご確認のうえ再度お試しいただくか、新郎新婦まで直接ご連絡ください。';
                     status.classList.add('ng');
                     btn.disabled = false;
                     btn.textContent = '送信する';
