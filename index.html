@@ -219,6 +219,88 @@
             border-color: var(--ink);
         }
 
+        /* お願いとご案内 */
+        .note-block {
+            margin-top: 44px;
+        }
+
+        .note-block h3 {
+            font-size: 15.5px;
+            font-weight: 600;
+            letter-spacing: 0.24em;
+            text-indent: 0.24em;
+            color: var(--accent);
+        }
+
+        .note-block h3::after {
+            content: '';
+            display: block;
+            width: 28px;
+            height: 1px;
+            background: var(--accent-soft);
+            margin: 12px auto 0;
+        }
+
+        .note-block p {
+            margin-top: 18px;
+            font-size: 14.5px;
+            line-height: 2.4;
+            letter-spacing: 0.08em;
+            color: var(--ink-soft);
+        }
+
+        .bus-times {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 12px;
+        }
+
+        .bus-times span {
+            font-family: var(--font-sans);
+            font-size: 13px;
+            letter-spacing: 0.06em;
+            color: var(--ink);
+            background: var(--accent-faint);
+            border: 1px solid var(--accent-soft);
+            border-radius: 999px;
+            padding: 5px 16px;
+        }
+
+        .note-block a {
+            color: var(--accent);
+            border-bottom: 1px solid var(--accent-soft);
+            padding-bottom: 1px;
+            word-break: break-all;
+            transition: color 0.25s ease, border-color 0.25s ease;
+        }
+
+        .note-block a:hover {
+            color: var(--ink);
+            border-color: var(--ink);
+        }
+
+        /* アレルギー欄の案内文 */
+        .field-note {
+            font-size: 12.5px;
+            line-height: 2.1;
+            letter-spacing: 0.05em;
+            color: var(--ink-soft);
+            background: var(--bg);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+        }
+
+        .field-note a {
+            color: var(--accent);
+            border-bottom: 1px solid var(--accent-soft);
+            padding-bottom: 1px;
+            word-break: break-all;
+        }
+
         @media (max-width: 620px) {
             .info-grid {
                 grid-template-columns: 1fr;
@@ -612,6 +694,56 @@
         <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E3%82%A2%E3%83%8B%E3%83%B4%E3%82%A7%E3%83%AB%E3%82%BB%E3%83%AB%E7%99%BD%E5%A3%81" target="_blank" rel="noopener">アクセスマップ ↗</a>
     </section>
 
+    <!-- お願いとご案内 -->
+    <section class="invite-section reveal" id="notes">
+        <p class="eyebrow">For Guests</p>
+        <div class="divider"></div>
+        <h2>お願いとご案内</h2>
+
+        <div class="note-block">
+            <h3>挙式へのご列席</h3>
+            <p>
+                なお　挙式にもご列席賜りたく当日午前9時40分までに<br>
+                お越しくださいますようお願い申し上げます
+            </p>
+        </div>
+
+        <div class="note-block">
+            <h3>シャトルバスのご案内</h3>
+            <p>
+                当日 名古屋駅太閤通口より無料シャトルバスを<br>
+                下記時間にて運行しております
+            </p>
+            <div class="bus-times">
+                <span>午前8時15分</span>
+                <span>午前8時45分</span>
+                <span>午前9時15分</span>
+            </div>
+            <p>
+                下記URLよりご乗車場所を<br>
+                ご確認くださいませ<br>
+                <a href="https://www.anniversaire.co.jp/wedding/shirakabe/access/" target="_blank" rel="noopener">https://www.anniversaire.co.jp/wedding/shirakabe/access/</a>
+            </p>
+            <p>
+                おひらき後も式場から名古屋駅へ<br>
+                お時間に合わせて運行がございます
+            </p>
+        </div>
+
+        <div class="note-block">
+            <h3>お車でお越しの皆様へ</h3>
+            <p>
+                ご酒宴ということをご配慮いただき<br>
+                なるべく公共交通機関をご利用くださいませ
+            </p>
+            <p>
+                駐車場につきましては台数に<br>
+                限りがございますので<br>
+                ご予約制とさせていただいております
+            </p>
+        </div>
+    </section>
+
     <!-- ギャラリー（TODO: 前撮り写真に差し替え予定） -->
     <section class="invite-section reveal" id="gallery">
         <p class="eyebrow">Us</p>
@@ -675,7 +807,19 @@
 
                 <div class="form-field">
                     <label for="allergyInput">食物アレルギー・苦手な食材<span class="opt">任意</span></label>
-                    <textarea class="field" id="allergyInput" placeholder="例）えび・かに アレルギーがあります"></textarea>
+                    <p class="field-note">
+                        アレルギー食材がございましたら<br>
+                        返信欄にご登録ください<br>
+                        食物アレルギー(NG食材)の<br>
+                        対応につきましては下記URLより<br>
+                        詳細をご確認いただきまして<br>
+                        該当食材についてエキスの使用可否を含めて<br>
+                        回答フォームへご入力くださいませ<br>
+                        <a href="https://tinyurl.com/495h57va" target="_blank" rel="noopener">https://tinyurl.com/495h57va</a><br>
+                        アレルギー食材の完全除去は致しかねますが<br>
+                        できる限り配慮させていただきます
+                    </p>
+                    <textarea class="field" id="allergyInput" placeholder="例）えび　→　エキスの使用も不可　など"></textarea>
                 </div>
 
                 <div class="form-field">
