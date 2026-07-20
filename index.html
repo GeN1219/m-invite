@@ -43,15 +43,28 @@
             color: #fff;
         }
 
-        .invite-hero .bg {
+        /* ヒーロー背景スライドショー（数秒ごとにクロスフェード） */
+        /* ※ .invite-hero > * の position:relative / z-index:1 より詳細度を上げて背面に固定する */
+        .invite-hero .hero-slides {
             position: absolute;
             inset: 0;
-            /* 衣装合わせの写真（前撮り本番の写真が出来たら pic/hero.jpg を差し替え） */
-            background: url('pic/hero.jpg') center 15% / cover no-repeat;
+            z-index: 0;
         }
 
-        .invite-hero .bg::after {
-            content: '';
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transition: opacity 1.8s ease;
+        }
+
+        .hero-slide.show {
+            opacity: 1;
+        }
+
+        .hero-shade {
             position: absolute;
             inset: 0;
             background: linear-gradient(rgba(20, 16, 12, 0.45), rgba(20, 16, 12, 0.25) 45%, rgba(20, 16, 12, 0.55));
@@ -631,9 +644,13 @@
         <a href="#rsvp">ご出欠<small>R.S.V.P.</small></a>
     </div>
 
-    <!-- ヒーロー（TODO: 前撮り写真に差し替え予定） -->
+    <!-- ヒーロー（衣装合わせの写真をスライドショー表示。前撮り本番の写真が出来たら HERO_SLIDES を差し替え） -->
     <section class="invite-hero">
-        <div class="bg"></div>
+        <div class="hero-slides">
+            <div class="hero-slide" id="slideA"></div>
+            <div class="hero-slide" id="slideB"></div>
+            <div class="hero-shade"></div>
+        </div>
         <p class="eyebrow">Wedding Invitation</p>
         <div class="divider"></div>
         <h1 class="invite-names">Gen <span class="amp">&amp;</span> Ayano</h1>
@@ -750,13 +767,9 @@
         <p class="eyebrow">Us</p>
         <div class="divider"></div>
         <h2>ふたりのこと</h2>
-        <!-- 衣装合わせの写真（前撮り本番の写真が出来たら差し替え） -->
-        <div class="invite-gallery photo-grid" style="display:grid">
-            <figure><img src="pic/us1.jpg" alt="新郎 紋付袴" loading="lazy" style="object-position:50% 0%"></figure>
-            <figure><img src="pic/us2.jpg" alt="ふたり 和装" loading="lazy" style="object-position:48% 50%"></figure>
-            <figure><img src="pic/us3.jpg" alt="新婦 白無垢" loading="lazy" style="object-position:50% 0%"></figure>
-        </div>
-        <p class="countdown-note">2017.11.15 に出会ってから、いつもふたりで歩いてきました</p>
+        <!-- 過去の思い出写真からランダムに3枚表示（一覧は MEMORIES 配列） -->
+        <div class="invite-gallery photo-grid" style="display:grid" id="memoryGallery"></div>
+        <p class="countdown-note">2017.11.15 に出会ってから、いつもふたりで歩いてきました<br>※ 開くたびに思い出の写真が変わります</p>
     </section>
 
     <!-- 出欠フォーム -->
@@ -871,6 +884,82 @@
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImllcGFrbnhra3hxc3d0dWtoaGtmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA3Njg4NjIsImV4cCI6MjA4NjM0NDg2Mn0.1xeKkylb6kEVos-33wIaje6Mz5lqpQMdAOeUpa0DGRM';
 
         document.getElementById('deadlineText').textContent = RSVP_DEADLINE_TEXT;
+
+        // ---- ヒーロー背景スライドショー ----
+        // 前撮り本番の写真が出来たらここを差し替え（pos はトリミング位置）
+        const HERO_SLIDES = [
+            { src: 'pic/hero1.jpg', pos: '50% 15%' },  // ふたり後ろ姿（色打掛×紋付）
+            { src: 'pic/hero3.jpg', pos: '49% 0%' },   // ふたり正面
+            { src: 'pic/hero2.jpg', pos: '58% 14%' },  // 新郎
+            { src: 'pic/hero4.jpg', pos: '59% 8%' },   // 新婦
+        ];
+        const SLIDE_INTERVAL_MS = 6000;
+
+        (() => {
+            const layers = [document.getElementById('slideA'), document.getElementById('slideB')];
+            const setSlide = (layer, s) => {
+                layer.style.backgroundImage = `url('${s.src}')`;
+                layer.style.backgroundPosition = s.pos;
+            };
+
+            // 先読みしてカクつきを防ぐ
+            HERO_SLIDES.forEach(s => { const img = new Image(); img.src = s.src; });
+
+            let idx = 0;
+            let front = 0;
+            setSlide(layers[0], HERO_SLIDES[0]);
+            layers[0].classList.add('show');
+
+            // 動きを抑える設定のユーザーには1枚目を固定表示
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            if (HERO_SLIDES.length < 2) return;
+
+            setInterval(() => {
+                idx = (idx + 1) % HERO_SLIDES.length;
+                const back = 1 - front;
+                setSlide(layers[back], HERO_SLIDES[idx]);
+                layers[back].classList.add('show');
+                layers[front].classList.remove('show');
+                front = back;
+            }, SLIDE_INTERVAL_MS);
+        })();
+
+        // ---- 思い出写真をランダムに3枚表示 ----
+        // 写真を増やすときは pic/memories/ に追加してここに1行足すだけ
+        const MEMORIES = [
+            { src: 'pic/memories/mem01.jpg', pos: '38% 50%' },   // 2018 初ディズニー
+            { src: 'pic/memories/mem02.jpg', pos: '50% 50%' },   // 2017 なばなの里
+            { src: 'pic/memories/mem03.jpg', pos: '50% 100%' },  // 2019 ユニバ
+            { src: 'pic/memories/mem04.jpg', pos: '50% 0%' },    // 2019 京都
+            { src: 'pic/memories/mem05.jpg', pos: '80% 50%' },   // 2020 高山
+            { src: 'pic/memories/mem06.jpg', pos: '50% 50%' },   // 2021 嵐山
+            { src: 'pic/memories/mem07.jpg', pos: '50% 100%' },  // 2022 浴衣
+            { src: 'pic/memories/mem08.jpg', pos: '59% 50%' },   // 2022 伊豆
+            { src: 'pic/memories/mem09.jpg', pos: '50% 50%' },   // 2023 ディズニーシー
+            { src: 'pic/memories/mem10.jpg', pos: '62% 50%' },   // 2023 横浜
+            { src: 'pic/memories/mem11.jpg', pos: '51% 50%' },   // 2024 鎌倉
+            { src: 'pic/memories/mem12.jpg', pos: '5% 50%' },    // 2025 上海
+        ];
+
+        (() => {
+            const grid = document.getElementById('memoryGallery');
+            const pool = [...MEMORIES];
+            // Fisher-Yates シャッフルで重複なしの3枚を選ぶ
+            for (let i = pool.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [pool[i], pool[j]] = [pool[j], pool[i]];
+            }
+            pool.slice(0, 3).forEach((m) => {
+                const fig = document.createElement('figure');
+                const img = document.createElement('img');
+                img.src = m.src;
+                img.alt = 'ふたりの思い出';
+                img.loading = 'lazy';
+                img.style.objectPosition = m.pos;
+                fig.appendChild(img);
+                grid.appendChild(fig);
+            });
+        })();
 
         // ---- カウントダウン ----
         (() => {
