@@ -134,6 +134,21 @@
             color: var(--ink-soft);
         }
 
+        .greeting-date {
+            margin-top: 34px;
+            font-size: 15px;
+            letter-spacing: 0.1em;
+            color: var(--ink-soft);
+        }
+
+        .greeting-sender {
+            margin-top: 18px;
+            font-size: 16px;
+            line-height: 2.2;
+            letter-spacing: 0.14em;
+            color: var(--ink);
+        }
+
         /* カウントダウン */
         .countdown {
             display: flex;
@@ -665,8 +680,9 @@
         <div class="divider"></div>
         <h2>ご挨拶</h2>
         <p class="greeting-body">
+            謹啓<br>
             秋の訪れを感じる季節となりました<br>
-            皆様には ますますご清栄のことと<br>
+            皆様には ご清栄のことと<br>
             お喜び申し上げます<br>
             <br>
             2017年11月15日より<br>
@@ -681,8 +697,14 @@
             披露パーティを催したいと存じます<br>
             ご多用のところ恐縮ではございますが<br>
             ご出席くださいますよう<br>
-            ご案内申し上げます
+            ご案内申し上げます<br>
+            謹白
         </p>
+        <p class="greeting-date">2026年9月吉日</p>
+        <div class="greeting-sender">
+            <p>新郎　大岸　玄</p>
+            <p>新婦　坂井田　彩乃</p>
+        </div>
     </section>
 
     <!-- カウントダウン -->
@@ -695,7 +717,7 @@
             <div class="cd-cell"><p class="num" id="cdHours">-</p><span class="unit">Hours</span></div>
             <div class="cd-cell"><p class="num" id="cdMins">-</p><span class="unit">Minutes</span></div>
         </div>
-        <p class="countdown-note">2026.11.15 SUN に皆様とお会いできますように</p>
+        <p class="countdown-note">2026年11月15日 日曜日に皆様とお会いできますように</p>
     </section>
 
     <!-- 開催情報 -->
@@ -706,13 +728,13 @@
         <div class="info-grid">
             <div class="info-card">
                 <p class="info-label">Ceremony</p>
-                <p class="info-main">挙式　10:30</p>
-                <p class="info-sub">2026.11.15 SUN<br>アニヴェルセル 白壁<br>〒461-0027 愛知県名古屋市東区芳野1-13-19</p>
+                <p class="info-main">挙式　午前10時30分</p>
+                <p class="info-sub">2026年11月15日 日曜日<br>アニヴェルセル 白壁<br>〒461-0027 愛知県名古屋市東区芳野1-13-19</p>
             </div>
             <div class="info-card">
                 <p class="info-label">Reception</p>
-                <p class="info-main">披露宴　12:00（予定）</p>
-                <p class="info-sub">2026.11.15 SUN<br>アニヴェルセル 白壁<br>〒461-0027 愛知県名古屋市東区芳野1-13-19</p>
+                <p class="info-main">披露宴　正午（予定）</p>
+                <p class="info-sub">2026年11月15日 日曜日<br>アニヴェルセル 白壁<br>〒461-0027 愛知県名古屋市東区芳野1-13-19</p>
             </div>
         </div>
         <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E3%82%A2%E3%83%8B%E3%83%B4%E3%82%A7%E3%83%AB%E3%82%BB%E3%83%AB%E7%99%BD%E5%A3%81" target="_blank" rel="noopener">アクセスマップ ↗</a>
@@ -775,7 +797,7 @@
         <h2>ふたりのこと</h2>
         <!-- 過去の思い出写真からランダムに3枚表示（一覧は MEMORIES 配列） -->
         <div class="invite-gallery photo-grid" style="display:grid" id="memoryGallery"></div>
-        <p class="countdown-note">2017.11.15 に出会ってから、いつもふたりで歩いてきました<br>※ 開くたびに思い出の写真が変わります</p>
+        <p class="countdown-note">2017.11.15 に出会ってから いつもふたりで歩いてきました<br>※ 開くたびに思い出の写真が変わります</p>
     </section>
 
     <!-- 出欠フォーム -->
