@@ -275,6 +275,7 @@ a {
     font-size: 20px;
     letter-spacing: 0.2em;
     color: var(--ink);
+    text-align: center;
     padding: 14px 30px;
     opacity: 0;
     transform: translateY(14px);
