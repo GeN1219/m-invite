@@ -330,6 +330,34 @@
             word-break: break-all;
         }
 
+        /* アレルギー：案内カード（入力欄と誤認しないよう視覚的に区別） */
+        .field-note--guide {
+            background: var(--accent-faint);
+            border: 1px solid var(--accent-soft);
+            border-left: 3px solid var(--accent);
+        }
+
+        .field-note-title {
+            display: block;
+            font-weight: 600;
+            color: var(--ink);
+            letter-spacing: 0.06em;
+            margin-bottom: 6px;
+        }
+
+        .allergy-detail {
+            margin-top: 16px;
+        }
+
+        .allergy-detail-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            color: var(--ink);
+            margin-bottom: 8px;
+        }
+
         @media (max-width: 620px) {
             .info-grid {
                 grid-template-columns: 1fr;
@@ -844,25 +872,33 @@
                 </div>
 
                 <div class="form-field">
-                    <label for="contactInput">ご連絡先（メールまたは電話番号）<span class="opt">任意</span></label>
-                    <input class="field" type="text" id="contactInput" placeholder="例）example@mail.com" autocomplete="email">
+                    <label for="contactInput">ご連絡先（メールまたは電話番号）<span class="req">必須</span></label>
+                    <input class="field" type="text" id="contactInput" placeholder="例）example@mail.com" autocomplete="email" required>
                 </div>
 
                 <div class="form-field">
-                    <label for="allergyInput">食物アレルギー・苦手な食材<span class="opt">任意</span></label>
-                    <p class="field-note">
-                        アレルギー食材がございましたら<br>
-                        返信欄にご登録ください<br>
-                        食物アレルギー(NG食材)の<br>
-                        対応につきましては下記URLより<br>
-                        詳細をご確認いただきまして<br>
-                        該当食材についてエキスの使用可否を含めて<br>
-                        回答フォームへご入力くださいませ<br>
-                        <a href="https://tinyurl.com/495h57va" target="_blank" rel="noopener">https://tinyurl.com/495h57va</a><br>
-                        アレルギー食材の完全除去は致しかねますが<br>
-                        できる限り配慮させていただきます
-                    </p>
-                    <textarea class="field" id="allergyInput" placeholder="例）えび　→　エキスの使用も不可　など"></textarea>
+                    <label>食物アレルギー<span class="req">必須</span></label>
+                    <div class="side-choice allergy-choice">
+                        <input type="radio" name="allergy_has" id="allergyYes" value="あり" required>
+                        <label for="allergyYes">あり</label>
+                        <input type="radio" name="allergy_has" id="allergyNo" value="なし">
+                        <label for="allergyNo">なし</label>
+                    </div>
+
+                    <div class="allergy-detail" id="allergyDetail" hidden>
+                        <div class="field-note field-note--guide">
+                            <span class="field-note-title">▼ 以下の欄にご記入ください</span>
+                            食物アレルギー(NG食材)の対応につきましては<br>
+                            下記URLより詳細をご確認いただき<br>
+                            該当食材についてエキスの使用可否を含め<br>
+                            ご記入くださいませ<br>
+                            <a href="https://tinyurl.com/495h57va" target="_blank" rel="noopener">https://tinyurl.com/495h57va</a><br>
+                            完全な除去は致しかねますが<br>
+                            できる限り配慮させていただきます
+                        </div>
+                        <label for="allergyInput" class="allergy-detail-label">アレルギー内容のご記入<span class="req">必須</span></label>
+                        <textarea class="field" id="allergyInput" placeholder="例）えび　→　エキスの使用も不可　など"></textarea>
+                    </div>
                 </div>
 
                 <div class="form-field">
@@ -997,6 +1033,22 @@
             setInterval(tick, 30000);
         })();
 
+        // ---- アレルギー あり/なし の切り替え ----
+        (() => {
+            const detail = document.getElementById('allergyDetail');
+            const textarea = document.getElementById('allergyInput');
+            const sync = () => {
+                const checked = document.querySelector('input[name="allergy_has"]:checked');
+                const has = !!checked && checked.value === 'あり';
+                detail.hidden = !has;
+                textarea.required = has;   // 「あり」のときだけ内容を必須に
+                if (!has) textarea.value = '';
+            };
+            document.querySelectorAll('input[name="allergy_has"]').forEach(r =>
+                r.addEventListener('change', sync));
+            sync();
+        })();
+
         // ---- 出欠フォーム送信 ----
         (() => {
             const form = document.getElementById('rsvpForm');
@@ -1015,7 +1067,11 @@
                     name: document.getElementById('nameInput').value.trim(),
                     kana: document.getElementById('kanaInput').value.trim(),
                     contact: document.getElementById('contactInput').value.trim(),
-                    allergy: document.getElementById('allergyInput').value.trim(),
+                    allergy: (() => {
+                        const has = form.querySelector('input[name="allergy_has"]:checked')?.value;
+                        const detail = document.getElementById('allergyInput').value.trim();
+                        return has === 'あり' ? (detail || 'あり（内容未記入）') : 'なし';
+                    })(),
                     message: document.getElementById('messageInput').value.trim(),
                 };
 
