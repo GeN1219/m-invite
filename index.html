@@ -1055,9 +1055,23 @@
             const btn = document.getElementById('submitBtn');
             const status = document.getElementById('formStatus');
 
-            form.addEventListener('submit', async (e) => {
+            const showDone = () => {
+                form.style.display = 'none';
+                document.querySelector('.rsvp-lead').style.display = 'none';
+                document.getElementById('rsvpDone').style.display = 'block';
+            };
+
+            form.addEventListener('submit', (e) => {
                 e.preventDefault();
                 status.className = 'form-status';
+
+                // 明らかにオフラインのときだけ、送信前に知らせる
+                if (navigator.onLine === false) {
+                    status.textContent = 'オフラインのようです。通信環境をご確認のうえ再度お試しください。';
+                    status.classList.add('ng');
+                    return;
+                }
+
                 btn.disabled = true;
                 btn.textContent = '送信中…';
 
@@ -1075,25 +1089,18 @@
                     message: document.getElementById('messageInput').value.trim(),
                 };
 
-                try {
-                    // GASウェブアプリはCORSレスポンスを返さないため no-cors で送信（結果は読まない）
-                    await fetch(RSVP_ENDPOINT, {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        body: JSON.stringify(payload),
-                    });
-                } catch (err) {
-                    console.error('送信エラー:', err);
-                    status.textContent = '送信に失敗しました。通信環境をご確認のうえ再度お試しいただくか、新郎新婦まで直接ご連絡ください。';
-                    status.classList.add('ng');
-                    btn.disabled = false;
-                    btn.textContent = '送信する';
-                    return;
-                }
+                // GASウェブアプリは no-cors でレスポンスを読めない。
+                // 応答（リダイレクト）を待つと数秒固まって見えるため、送信は投げっぱなしにし、
+                // keepalive でバックグラウンド継続させたうえで、すぐに完了画面へ切り替える。
+                fetch(RSVP_ENDPOINT, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    keepalive: true,
+                    body: JSON.stringify(payload),
+                }).catch(err => console.error('送信エラー:', err));
 
-                form.style.display = 'none';
-                document.querySelector('.rsvp-lead').style.display = 'none';
-                document.getElementById('rsvpDone').style.display = 'block';
+                // 一瞬「送信中…」を見せてから完了画面へ（体感速度と安心感のバランス）
+                setTimeout(showDone, 600);
             });
         })();
     </script>
