@@ -156,6 +156,15 @@ a {
     font-style: italic;
 }
 
+/* ロゴの連結記号も野球ボールに */
+.brand .amp-ball {
+    width: 0.9em;
+    height: 0.9em;
+    align-self: center;
+    flex: none;
+    color: var(--accent);
+}
+
 .brand-since {
     font-size: 11px;
     letter-spacing: 0.28em;
