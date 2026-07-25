@@ -79,9 +79,20 @@
         .invite-hero .divider { background: rgba(255, 255, 255, 0.8); }
         .invite-hero .divider::after { background: #fff; }
 
+        .invite-title {
+            font-family: var(--font-serif);
+            font-size: clamp(62px, 17vw, 128px);
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            text-indent: 0.3em;
+            line-height: 1.15;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+        }
+
         .invite-names {
+            margin-top: 22px;
             font-family: var(--font-latin);
-            font-size: clamp(44px, 9vw, 96px);
+            font-size: clamp(24px, 5vw, 42px);
             font-weight: 500;
             letter-spacing: 0.1em;
             line-height: 1.2;
@@ -224,6 +235,26 @@
         }
 
         .info-card .info-sub {
+            margin-top: 8px;
+            font-size: 13px;
+            letter-spacing: 0.08em;
+            color: var(--ink-soft);
+            line-height: 2;
+        }
+
+        /* 挙式・披露宴とも同会場のため住所は1つにまとめる */
+        .info-venue {
+            margin-top: 22px;
+            text-align: center;
+        }
+
+        .info-venue-name {
+            font-size: 17px;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+        }
+
+        .info-venue-sub {
             margin-top: 8px;
             font-size: 13px;
             letter-spacing: 0.08em;
@@ -696,7 +727,8 @@
         </div>
         <p class="eyebrow">Wedding Invitation</p>
         <div class="divider"></div>
-        <h1 class="invite-names">Gen <span class="amp">&amp;</span> Ayano</h1>
+        <h1 class="invite-title">招待状</h1>
+        <p class="invite-names">Gen <span class="amp">&amp;</span> Ayano</p>
         <p class="invite-names-jp">玄・彩乃</p>
         <p class="invite-date-line">2026.11.15 SUN</p>
         <div class="scroll-cue">SCROLL</div>
@@ -757,15 +789,17 @@
             <div class="info-card">
                 <p class="info-label">Ceremony</p>
                 <p class="info-main">挙式　午前10時00分</p>
-                <p class="info-sub">2026年11月15日 日曜日<br>アニヴェルセル 白壁<br>〒461-0027 愛知県名古屋市東区芳野1-13-19</p>
             </div>
             <div class="info-card">
                 <p class="info-label">Reception</p>
                 <p class="info-main">披露宴　午前11時00分</p>
-                <p class="info-sub">2026年11月15日 日曜日<br>アニヴェルセル 白壁<br>〒461-0027 愛知県名古屋市東区芳野1-13-19</p>
             </div>
         </div>
-        <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E3%82%A2%E3%83%8B%E3%83%B4%E3%82%A7%E3%83%AB%E3%82%BB%E3%83%AB%E7%99%BD%E5%A3%81" target="_blank" rel="noopener">アクセスマップ ↗</a>
+        <div class="info-venue">
+            <p class="info-venue-name">アニヴェルセル 白壁</p>
+            <p class="info-venue-sub">2026年11月15日 日曜日<br>〒461-0027 愛知県名古屋市東区芳野1-13-19</p>
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E3%82%A2%E3%83%8B%E3%83%B4%E3%82%A7%E3%83%AB%E3%82%BB%E3%83%AB%E7%99%BD%E5%A3%81" target="_blank" rel="noopener">アクセスマップ ↗</a>
+        </div>
     </section>
 
     <!-- お願いとご案内 -->
