@@ -342,38 +342,22 @@
         }
 
         /* アレルギー欄の案内文 */
-        .field-note {
-            font-size: 12.5px;
-            line-height: 2.1;
-            letter-spacing: 0.05em;
+        /* アレルギー案内：入力欄と誤認しないよう枠なしの案内文にする（rsvp-lead と同じ見た目） */
+        .allergy-guide {
+            text-align: center;
+            font-family: var(--font-serif);
+            font-size: 13.5px;
+            line-height: 2.3;
+            letter-spacing: 0.06em;
             color: var(--ink-soft);
-            background: var(--bg);
-            border: 1px solid var(--line);
-            border-radius: 10px;
-            padding: 14px 16px;
-            margin-bottom: 10px;
+            margin-bottom: 18px;
         }
 
-        .field-note a {
+        .allergy-guide a {
             color: var(--accent);
             border-bottom: 1px solid var(--accent-soft);
             padding-bottom: 1px;
             word-break: break-all;
-        }
-
-        /* アレルギー：案内カード（入力欄と誤認しないよう視覚的に区別） */
-        .field-note--guide {
-            background: var(--accent-faint);
-            border: 1px solid var(--accent-soft);
-            border-left: 3px solid var(--accent);
-        }
-
-        .field-note-title {
-            display: block;
-            font-weight: 600;
-            color: var(--ink);
-            letter-spacing: 0.06em;
-            margin-bottom: 6px;
         }
 
         .allergy-detail {
@@ -920,16 +904,15 @@
                     </div>
 
                     <div class="allergy-detail" id="allergyDetail" hidden>
-                        <div class="field-note field-note--guide">
-                            <span class="field-note-title">▼ 以下の欄にご記入ください</span>
+                        <p class="allergy-guide">
                             食物アレルギー(NG食材)の対応につきましては<br>
                             下記URLより詳細をご確認いただき<br>
                             該当食材についてエキスの使用可否を含め<br>
-                            ご記入くださいませ<br>
+                            下の欄にご記入くださいませ<br>
                             <a href="https://tinyurl.com/495h57va" target="_blank" rel="noopener">https://tinyurl.com/495h57va</a><br>
                             完全な除去は致しかねますが<br>
                             できる限り配慮させていただきます
-                        </div>
+                        </p>
                         <label for="allergyInput" class="allergy-detail-label">アレルギー内容のご記入<span class="req">必須</span></label>
                         <textarea class="field" id="allergyInput" placeholder="例）えび　→　エキスの使用も不可　など"></textarea>
                     </div>
