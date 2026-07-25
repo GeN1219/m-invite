@@ -96,7 +96,7 @@ a {
 
 .eyebrow {
     font-family: var(--font-latin);
-    font-size: 13px;
+    font-size: 14.7px;
     letter-spacing: 0.42em;
     text-transform: uppercase;
     color: var(--accent);
@@ -173,7 +173,7 @@ a {
     align-items: baseline;
     gap: 12px;
     font-family: var(--font-latin);
-    font-size: 20px;
+    font-size: 22.6px;
     letter-spacing: 0.22em;
     color: var(--ink);
 }
@@ -193,7 +193,7 @@ a {
 }
 
 .brand-since {
-    font-size: 11px;
+    font-size: 12.4px;
     letter-spacing: 0.28em;
     color: var(--ink-soft);
 }
@@ -206,7 +206,7 @@ a {
 
 .nav-links a {
     position: relative;
-    font-size: 13.5px;
+    font-size: 15.3px;
     letter-spacing: 0.14em;
     color: var(--ink-soft);
     padding: 6px 0;
@@ -240,7 +240,7 @@ a {
 /* 経過日数チップ */
 .days-chip {
     font-family: var(--font-latin);
-    font-size: 13px;
+    font-size: 14.7px;
     letter-spacing: 0.18em;
     color: var(--accent);
     border: 1px solid var(--accent-soft);
@@ -308,7 +308,7 @@ a {
 }
 
 .nav-drawer a {
-    font-size: 20px;
+    font-size: 22.6px;
     letter-spacing: 0.2em;
     color: var(--ink);
     text-align: center;
@@ -327,7 +327,7 @@ a {
     display: block;
     text-align: center;
     font-family: var(--font-latin);
-    font-size: 11px;
+    font-size: 12.4px;
     letter-spacing: 0.3em;
     color: var(--accent);
     margin-top: 2px;
@@ -343,7 +343,7 @@ a {
     border: none;
     background: transparent;
     color: var(--ink);
-    font-size: 34px;
+    font-size: 38.4px;
     font-weight: 300;
     line-height: 1;
     cursor: pointer;
@@ -390,7 +390,7 @@ a {
 
 .hero-date {
     font-family: var(--font-latin);
-    font-size: clamp(56px, 11vw, 128px);
+    font-size: clamp(63.3px, 12.4vw, 144.6px);
     font-weight: 500;
     letter-spacing: 0.08em;
     line-height: 1.1;
@@ -399,7 +399,7 @@ a {
 
 .hero-names {
     margin-top: 18px;
-    font-size: clamp(17px, 2.6vw, 22px);
+    font-size: clamp(19.2px, 2.9vw, 24.9px);
     letter-spacing: 0.5em;
     text-indent: 0.5em;
     color: var(--ink-soft);
@@ -415,7 +415,7 @@ a {
 .hero-days {
     margin-top: 34px;
     font-family: var(--font-latin);
-    font-size: clamp(15px, 2.2vw, 19px);
+    font-size: clamp(16.9px, 2.5vw, 21.5px);
     letter-spacing: 0.3em;
     color: var(--accent);
 }
@@ -437,7 +437,7 @@ a {
     gap: 10px;
     color: var(--ink-faint);
     font-family: var(--font-latin);
-    font-size: 11px;
+    font-size: 12.4px;
     letter-spacing: 0.4em;
     text-indent: 0.4em;
 }
@@ -473,7 +473,7 @@ a {
 }
 
 .story-intro h2 {
-    font-size: clamp(24px, 4vw, 32px);
+    font-size: clamp(27.1px, 4.5vw, 36.2px);
     font-weight: 600;
     letter-spacing: 0.3em;
     text-indent: 0.3em;
@@ -482,7 +482,7 @@ a {
 .story-intro p {
     margin-top: 16px;
     color: var(--ink-soft);
-    font-size: 14.5px;
+    font-size: 16.4px;
     letter-spacing: 0.1em;
 }
 
@@ -550,7 +550,7 @@ a {
 
 .chapter-text .chapter-year {
     font-family: var(--font-latin);
-    font-size: clamp(42px, 6vw, 64px);
+    font-size: clamp(47.5px, 6.8vw, 72.3px);
     font-weight: 500;
     letter-spacing: 0.06em;
     line-height: 1;
@@ -560,7 +560,7 @@ a {
 .chapter-text .chapter-label {
     margin-top: 12px;
     font-family: var(--font-latin);
-    font-size: 13px;
+    font-size: 14.7px;
     letter-spacing: 0.34em;
     text-transform: uppercase;
     color: var(--accent);
@@ -568,7 +568,7 @@ a {
 
 .chapter-text .chapter-desc {
     margin-top: 18px;
-    font-size: 14.5px;
+    font-size: 16.4px;
     color: var(--ink-soft);
     letter-spacing: 0.06em;
     line-height: 2;
@@ -580,7 +580,7 @@ a {
     gap: 12px;
     margin-top: 26px;
     font-family: var(--font-latin);
-    font-size: 13px;
+    font-size: 14.7px;
     letter-spacing: 0.28em;
     color: var(--ink);
     transition: color 0.3s ease;
@@ -650,7 +650,7 @@ a {
 
 .page-hero h1 {
     font-family: var(--font-latin);
-    font-size: clamp(44px, 8vw, 76px);
+    font-size: clamp(49.7px, 9vw, 85.9px);
     font-weight: 500;
     letter-spacing: 0.08em;
     line-height: 1.1;
@@ -658,7 +658,7 @@ a {
 
 .page-hero h1.jp {
     font-family: var(--font-serif);
-    font-size: clamp(28px, 5vw, 42px);
+    font-size: clamp(31.6px, 5.6vw, 47.5px);
     letter-spacing: 0.24em;
     text-indent: 0.24em;
 }
@@ -666,7 +666,7 @@ a {
 .page-hero .page-sub {
     margin-top: 14px;
     color: var(--ink-soft);
-    font-size: 14px;
+    font-size: 15.8px;
     letter-spacing: 0.12em;
 }
 
@@ -711,14 +711,14 @@ a {
 
 .moment-date {
     font-family: var(--font-latin);
-    font-size: 15px;
+    font-size: 16.9px;
     letter-spacing: 0.22em;
     color: var(--accent);
 }
 
 .moment-tag {
     font-family: var(--font-latin);
-    font-size: 11.5px;
+    font-size: 13px;
     letter-spacing: 0.3em;
     text-transform: uppercase;
     color: var(--ink-faint);
@@ -727,7 +727,7 @@ a {
 
 .moment h3 {
     margin-top: 14px;
-    font-size: clamp(20px, 3.4vw, 25px);
+    font-size: clamp(22.6px, 3.8vw, 28.2px);
     font-weight: 600;
     letter-spacing: 0.12em;
     line-height: 1.6;
@@ -736,7 +736,7 @@ a {
 .moment .moment-body {
     margin-top: 14px;
     color: var(--ink-soft);
-    font-size: 15px;
+    font-size: 16.9px;
     letter-spacing: 0.04em;
     line-height: 2.1;
 }
@@ -806,7 +806,7 @@ a {
 
 .year-nav .dir {
     font-family: var(--font-latin);
-    font-size: 11px;
+    font-size: 12.4px;
     letter-spacing: 0.32em;
     text-transform: uppercase;
     color: var(--accent);
@@ -816,7 +816,7 @@ a {
     display: block;
     margin-top: 6px;
     font-family: var(--font-latin);
-    font-size: 20px;
+    font-size: 22.6px;
     letter-spacing: 0.12em;
 }
 
@@ -878,7 +878,7 @@ a {
 .lightbox-close {
     top: 18px;
     right: 22px;
-    font-size: 34px;
+    font-size: 38.4px;
     font-weight: 300;
 }
 
@@ -886,7 +886,7 @@ a {
 .lightbox-next {
     top: 50%;
     transform: translateY(-50%);
-    font-size: 44px;
+    font-size: 49.7px;
     font-weight: 300;
 }
 
@@ -903,13 +903,13 @@ a {
     transform: translateX(-50%);
     color: rgba(255, 255, 255, 0.6);
     font-family: var(--font-latin);
-    font-size: 13px;
+    font-size: 14.7px;
     letter-spacing: 0.3em;
 }
 
 @media (max-width: 560px) {
     .lightbox { padding: 20px; }
-    .lightbox-prev, .lightbox-next { font-size: 34px; }
+    .lightbox-prev, .lightbox-next { font-size: 38.4px; }
 }
 
 /* ----------------------------------------------------------
@@ -944,7 +944,7 @@ a {
 }
 
 .letter-head h1 {
-    font-size: clamp(26px, 4.6vw, 36px);
+    font-size: clamp(29.4px, 5.2vw, 40.7px);
     font-weight: 600;
     letter-spacing: 0.34em;
     text-indent: 0.34em;
@@ -953,14 +953,14 @@ a {
 .letter-head .letter-date {
     margin-top: 14px;
     font-family: var(--font-latin);
-    font-size: 14px;
+    font-size: 15.8px;
     letter-spacing: 0.24em;
     color: var(--ink-soft);
 }
 
 .letter-body p {
     margin-bottom: 34px;
-    font-size: 15.5px;
+    font-size: 17.5px;
     line-height: 2.4;
     letter-spacing: 0.05em;
     text-indent: 1em;
@@ -969,7 +969,7 @@ a {
 .letter-body p.lead {
     text-indent: 0;
     text-align: center;
-    font-size: clamp(19px, 3.2vw, 24px);
+    font-size: clamp(21.5px, 3.6vw, 27.1px);
     letter-spacing: 0.2em;
     color: var(--ink);
     margin-bottom: 48px;
@@ -978,14 +978,14 @@ a {
 .letter-sign {
     margin-top: 60px;
     text-align: right;
-    font-size: 18px;
+    font-size: 20.3px;
     letter-spacing: 0.24em;
 }
 
 .letter-sign .en {
     display: block;
     margin-top: 8px;
-    font-size: 12px;
+    font-size: 13.6px;
     color: var(--accent);
 }
 
@@ -1050,13 +1050,13 @@ a {
 .check-item.done .check-box::after {
     content: '✓';
     color: #fff;
-    font-size: 12px;
+    font-size: 13.6px;
     line-height: 1;
 }
 
 .check-text {
     flex: 1;
-    font-size: 15.5px;
+    font-size: 17.5px;
     letter-spacing: 0.04em;
     display: flex;
     align-items: center;
@@ -1072,7 +1072,7 @@ a {
 
 .tag {
     display: inline-block;
-    font-size: 11px;
+    font-size: 12.4px;
     font-weight: 500;
     letter-spacing: 0.08em;
     padding: 3px 12px;
@@ -1094,7 +1094,7 @@ a {
     padding: 12px 16px;
     border: 1px solid var(--line);
     border-radius: 10px;
-    font-size: 16px;
+    font-size: 18.1px;
     font-family: var(--font-sans);
     color: var(--ink);
     background: var(--bg);
@@ -1118,7 +1118,7 @@ a {
     background: var(--ink);
     color: #fff;
     font-family: var(--font-sans);
-    font-size: 14.5px;
+    font-size: 16.4px;
     letter-spacing: 0.1em;
     cursor: pointer;
     transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
@@ -1146,7 +1146,7 @@ a {
 
 .btn.small {
     padding: 8px 16px;
-    font-size: 12.5px;
+    font-size: 14.1px;
     border-radius: 999px;
 }
 
@@ -1165,7 +1165,7 @@ a {
     background: var(--card);
     color: var(--ink-soft);
     font-family: var(--font-sans);
-    font-size: 12.5px;
+    font-size: 14.1px;
     letter-spacing: 0.06em;
     cursor: pointer;
     transition: all 0.25s ease;
@@ -1186,7 +1186,7 @@ a {
     text-align: center;
     color: var(--ink-faint);
     padding: 44px 16px;
-    font-size: 14.5px;
+    font-size: 16.4px;
     letter-spacing: 0.06em;
 }
 
@@ -1197,7 +1197,7 @@ a {
     gap: 16px;
     margin-bottom: 22px;
     font-family: var(--font-latin);
-    font-size: 13px;
+    font-size: 14.7px;
     letter-spacing: 0.2em;
     color: var(--ink-soft);
 }
@@ -1225,7 +1225,7 @@ a {
     border-radius: 9px;
     background: var(--card);
     color: var(--ink-soft);
-    font-size: 13px;
+    font-size: 14.7px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -1245,7 +1245,7 @@ a {
 
 .qty-badge {
     font-family: var(--font-latin);
-    font-size: 12.5px;
+    font-size: 14.1px;
     letter-spacing: 0.08em;
     color: var(--accent);
     border: 1px solid var(--accent-soft);
@@ -1293,7 +1293,7 @@ a {
 
 .modal h3 {
     font-family: var(--font-serif);
-    font-size: 19px;
+    font-size: 21.5px;
     letter-spacing: 0.14em;
     margin-bottom: 22px;
 }
@@ -1304,7 +1304,7 @@ a {
 
 .modal-field label {
     display: block;
-    font-size: 12.5px;
+    font-size: 14.1px;
     letter-spacing: 0.1em;
     color: var(--ink-soft);
     margin-bottom: 7px;
@@ -1325,7 +1325,7 @@ a {
     padding: 10px 20px;
     border-radius: 999px;
     font-family: var(--font-sans);
-    font-size: 12.5px;
+    font-size: 14.1px;
     letter-spacing: 0.06em;
     color: #fff;
     z-index: 1200;
@@ -1356,13 +1356,13 @@ a {
 
 .site-footer .brand {
     justify-content: center;
-    font-size: 22px;
+    font-size: 24.9px;
 }
 
 .site-footer .footer-since {
     margin-top: 12px;
     font-family: var(--font-latin);
-    font-size: 12px;
+    font-size: 13.6px;
     letter-spacing: 0.34em;
     color: var(--ink-soft);
 }
@@ -1370,7 +1370,7 @@ a {
 .site-footer .footer-days {
     margin-top: 6px;
     font-family: var(--font-latin);
-    font-size: 12px;
+    font-size: 13.6px;
     letter-spacing: 0.2em;
     color: var(--accent);
 }
