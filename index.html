@@ -203,6 +203,82 @@
         }
 
         /* 開催情報 */
+        /* プロフィール */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-top: 40px;
+        }
+
+        .profile-card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
+            padding: 32px 22px 30px;
+            text-align: center;
+        }
+
+        .profile-photo {
+            width: 132px;
+            height: 132px;
+            margin: 0 auto 18px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: var(--bg-alt);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-role {
+            font-family: var(--font-latin);
+            font-size: 12px;
+            letter-spacing: 0.34em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .profile-name {
+            margin-top: 8px;
+            font-size: 19px;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+        }
+
+        .profile-kana {
+            margin-top: 4px;
+            font-size: 12px;
+            letter-spacing: 0.16em;
+            color: var(--ink-faint);
+        }
+
+        .profile-birth {
+            margin-top: 14px;
+            font-size: 13px;
+            letter-spacing: 0.08em;
+            color: var(--ink-soft);
+        }
+
+        .profile-word {
+            margin-top: 14px;
+            font-size: 13.5px;
+            line-height: 1.95;
+            letter-spacing: 0.05em;
+            color: var(--ink-soft);
+        }
+
+        @media (max-width: 620px) {
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .info-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -687,6 +763,7 @@
         <nav class="nav-links">
             <a href="#greeting">ご挨拶</a>
             <a href="#info">ご案内</a>
+            <a href="#profile">プロフィール</a>
             <a href="#gallery">ふたりのこと</a>
             <a href="#rsvp">ご出欠</a>
         </nav>
@@ -698,6 +775,7 @@
     <div class="nav-drawer">
         <a href="#greeting">ご挨拶<small>GREETING</small></a>
         <a href="#info">ご案内<small>INFORMATION</small></a>
+        <a href="#profile">プロフィール<small>PROFILE</small></a>
         <a href="#gallery">ふたりのこと<small>US</small></a>
         <a href="#rsvp">ご出欠<small>R.S.V.P.</small></a>
     </div>
@@ -833,6 +911,39 @@
                 限りがございますので<br>
                 ご予約制とさせていただいております
             </p>
+        </div>
+    </section>
+
+    <!-- プロフィール（★サンプル：ふりがな・生年月日・一言は要確認／差し替え） -->
+    <section class="invite-section reveal" id="profile">
+        <p class="eyebrow">Profile</p>
+        <div class="divider"></div>
+        <h2>プロフィール</h2>
+        <div class="profile-grid">
+            <div class="profile-card">
+                <div class="profile-photo"><img src="pic/hero2.jpg" alt="新郎 大岸 玄" loading="lazy"></div>
+                <p class="profile-role">Groom</p>
+                <p class="profile-name">大岸　玄</p>
+                <p class="profile-kana">おおぎし　げん</p><!-- ★ふりがな要確認 -->
+                <p class="profile-birth">1997年8月8日 生まれ</p><!-- ★サンプル：要差し替え -->
+                <p class="profile-word"><!-- ★サンプル：要差し替え -->
+                    食べることと野球観戦が大好きです<br>
+                    ふたりで12球場を制覇しました<br>
+                    当日お会いできるのを楽しみにしています
+                </p>
+            </div>
+            <div class="profile-card">
+                <div class="profile-photo"><img src="pic/hero4.jpg" alt="新婦 坂井田 彩乃" loading="lazy"></div>
+                <p class="profile-role">Bride</p>
+                <p class="profile-name">坂井田　彩乃</p>
+                <p class="profile-kana">さかいだ　あやの</p><!-- ★ふりがな要確認 -->
+                <p class="profile-birth">1998年5月20日 生まれ</p><!-- ★サンプル：要差し替え -->
+                <p class="profile-word"><!-- ★サンプル：要差し替え -->
+                    旅行と甘いものが大好きです<br>
+                    玄さんと過ごす穏やかな時間が宝物です<br>
+                    心を込めておもてなしいたします
+                </p>
+            </div>
         </div>
     </section>
 
