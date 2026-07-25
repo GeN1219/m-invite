@@ -4,6 +4,9 @@
    ========================================================== */
 
 :root {
+    /* ===== ベージュ版（既定・元のカラー） =====
+       ※ 青版に切り替えるには <html data-theme="blue"> を付ける。
+         ベージュに戻すには data-theme を外すだけ。 */
     --bg: #faf8f4;
     --bg-alt: #f2ede4;
     --card: #ffffff;
@@ -15,6 +18,8 @@
     --accent-faint: #efe6d6;
     --rose: #c77f7f;
     --line: #e6dfd2;
+    --header-bg: rgba(250, 248, 244, 0.88);
+    --drawer-bg: rgba(250, 248, 244, 0.97);
     --shadow-sm: 0 2px 10px rgba(60, 50, 35, 0.06);
     --shadow-md: 0 12px 40px rgba(60, 50, 35, 0.10);
     --shadow-lg: 0 24px 70px rgba(60, 50, 35, 0.14);
@@ -22,6 +27,28 @@
     --font-latin: 'Cormorant Garamond', 'Times New Roman', serif;
     --font-sans: 'Zen Kaku Gothic New', 'Hiragino Sans', 'Meiryo', sans-serif;
     --header-h: 64px;
+}
+
+/* ===== 青版（青×白・新婦の好み・お試し） =====
+   有効化: <html data-theme="blue">
+   ベージュに戻す: data-theme 属性を外す（この一行だけで戻せます） */
+:root[data-theme="blue"] {
+    --bg: #e8f0f9;          /* 薄い青（ページ背景） */
+    --bg-alt: #d5e4f4;      /* やや濃い青 */
+    --card: #ffffff;        /* 白（カード） */
+    --ink: #16253d;         /* 濃紺（本文） */
+    --ink-soft: #47597c;    /* 青みのグレー（副次テキスト） */
+    --ink-faint: #93a6c4;   /* 淡い青グレー */
+    --accent: #2c62a8;      /* 青（アクセント／リンク） */
+    --accent-soft: #9fc0e6; /* 淡い青 */
+    --accent-faint: #d8e6f7;/* ごく薄い青（案内枠・選択中の背景） */
+    --rose: #c77f7f;        /* 必須バッジ（赤系のまま・視認性のため） */
+    --line: #cbdcee;        /* 青系ボーダー */
+    --header-bg: rgba(232, 240, 249, 0.88);
+    --drawer-bg: rgba(232, 240, 249, 0.97);
+    --shadow-sm: 0 2px 10px rgba(20, 45, 80, 0.08);
+    --shadow-md: 0 12px 40px rgba(20, 45, 80, 0.12);
+    --shadow-lg: 0 24px 70px rgba(20, 45, 80, 0.16);
 }
 
 * {
@@ -135,7 +162,7 @@ a {
 }
 
 .site-header.is-solid {
-    background: rgba(250, 248, 244, 0.88);
+    background: var(--header-bg);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     box-shadow: 0 1px 0 var(--line);
@@ -261,7 +288,7 @@ a {
 .nav-drawer {
     position: fixed;
     inset: 0;
-    background: rgba(250, 248, 244, 0.97);
+    background: var(--drawer-bg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     display: flex;
